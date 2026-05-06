@@ -2,7 +2,7 @@
 # Uses the latest pre-built Thunder image with Choreo security requirements
 
 # Use the latest Thunder image as base
-FROM ghcr.io/asgardeo/thunder:latest
+FROM ghcr.io/asgardeo/thunder:0.36.0
 
 # Switch to root for configuration changes
 USER root
