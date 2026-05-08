@@ -46,7 +46,7 @@ jwt:
 
 cors:
   allowed_origins:
-    - "*"
+    - regex: '.*'
 
 consent:
   enabled: false
