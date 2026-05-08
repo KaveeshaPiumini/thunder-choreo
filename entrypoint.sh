@@ -6,7 +6,7 @@
 THUNDER_HOME="/opt/thunder"
 THUNDER_DB="/tmp/thunder-db"
 THUNDER_SECURITY="/tmp/thunder-security"
-SETUP_FLAG="/tmp/.thunder_setup_v5"
+SETUP_FLAG="/tmp/.thunder_setup_v6"
 
 echo ">>> Setting up writable directories in /tmp..."
 mkdir -p "$THUNDER_DB"
