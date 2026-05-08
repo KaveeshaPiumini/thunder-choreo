@@ -5,7 +5,7 @@ FROM ghcr.io/asgardeo/thunder:0.36.0
 
 USER root
 
-RUN apk add --no-cache jq
+RUN apk add --no-cache jq sqlite
 
 # Create a symlink: /opt/thunder/tmp -> /tmp
 # This allows deployment.yaml to use relative path "tmp/..." which resolves
