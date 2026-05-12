@@ -1,5 +1,5 @@
 #!/bin/sh
-THUNDER_HOME="/opt/thunder"
+THUNDER_HOME="/opt/thunderid"
 THUNDER_DB="/tmp/thunder-db"
 THUNDER_SECURITY="/tmp/thunder-security"
 
