@@ -15,8 +15,9 @@ RUN ln -s /tmp /opt/thunderid/tmp
 # Copy Choreo-optimized configs
 COPY deployment.yaml /opt/thunderid/repository/conf/deployment.yaml
 COPY entrypoint.sh /opt/thunderid/entrypoint.sh
+COPY 99-cfp-tracker-app.sh /opt/thunderid/bootstrap/99-cfp-tracker-app.sh
 
-RUN chmod +x /opt/thunderid/entrypoint.sh
+RUN chmod +x /opt/thunderid/entrypoint.sh /opt/thunderid/bootstrap/99-cfp-tracker-app.sh
 
 # Disable consent server
 ENV WITH_CONSENT=false
