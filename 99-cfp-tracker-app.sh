@@ -20,14 +20,14 @@ RESPONSE=$(thunder_api_call GET "/flows?flowType=AUTHENTICATION&limit=10")
 HTTP_CODE="${RESPONSE: -3}"
 BODY="${RESPONSE%???}"
 if [[ "$HTTP_CODE" == "200" ]]; then
-    AUTH_FLOW_ID=$(echo "$BODY" | grep -o '{[^}]*"id":"[^"]*"[^}]*"handle":"default-authentication-flow"[^}]*}' | grep -o '"id":"[^"]*"' | head -1 | cut -d'"' -f4)
+    AUTH_FLOW_ID=$(echo "$BODY" | grep -o '{[^}]*"id":"[^"]*"[^}]*"handle":"default-basic-flow"[^}]*}' | grep -o '"id":"[^"]*"' | head -1 | cut -d'"' -f4)
 fi
 
 RESPONSE=$(thunder_api_call GET "/flows?flowType=REGISTRATION&limit=10")
 HTTP_CODE="${RESPONSE: -3}"
 BODY="${RESPONSE%???}"
 if [[ "$HTTP_CODE" == "200" ]]; then
-    REG_FLOW_ID=$(echo "$BODY" | grep -o '{[^}]*"id":"[^"]*"[^}]*"handle":"default-registration-flow"[^}]*}' | grep -o '"id":"[^"]*"' | head -1 | cut -d'"' -f4)
+    REG_FLOW_ID=$(echo "$BODY" | grep -o '{[^}]*"id":"[^"]*"[^}]*"handle":"default-basic-flow"[^}]*}' | grep -o '"id":"[^"]*"' | head -1 | cut -d'"' -f4)
 fi
 
 # Fallback to the console ones if default doesn't exist
