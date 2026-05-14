@@ -58,13 +58,13 @@ database:
 
 crypto:
   encryption:
-    key: "file://tmp/thunder-security/crypto.key"
+    key: "file://repository/resources/security/crypto.key"
   password_hashing:
     algorithm: "PBKDF2"
   keys:
     - id: "default-key"
-      cert_file: "tmp/thunder-security/signing.cert"
-      key_file: "tmp/thunder-security/signing.key"
+      cert_file: "repository/resources/security/signing.cert"
+      key_file: "repository/resources/security/signing.key"
 
 jwt:
   preferred_key_id: "default-key"
