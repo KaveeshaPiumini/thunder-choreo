@@ -1,7 +1,7 @@
 # Thunder Choreo Deployment Dockerfile
 # Uses the latest pre-built Thunder image with Choreo security requirements
 
-FROM ghcr.io/asgardeo/thunderid:latest
+FROM ghcr.io/asgardeo/thunderid:0.38.0
 
 USER root
 
@@ -14,9 +14,8 @@ RUN ln -s /tmp /opt/thunderid/tmp
 
 COPY deployment.yaml /opt/thunderid/repository/conf/deployment.yaml
 COPY entrypoint.sh /opt/thunderid/entrypoint.sh
-COPY 99-cfp-tracker-app.sh /opt/thunderid/bootstrap/99-cfp-tracker-app.sh
 
-RUN chmod +x /opt/thunderid/entrypoint.sh /opt/thunderid/bootstrap/99-cfp-tracker-app.sh
+RUN chmod +x /opt/thunderid/entrypoint.sh
 
 # Disable consent server
 ENV WITH_CONSENT=false
