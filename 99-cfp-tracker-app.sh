@@ -43,38 +43,43 @@ RESPONSE=$(thunder_api_call POST "/applications" "{
   \"description\": \"CFP Tracker Next.js Application\",
   \"ouId\": \"${DEFAULT_OU_ID}\",
   \"url\": \"http://localhost:3000\",
-  \"logoUrl\": \"emoji:🎤\",
+  \"logoUrl\": \"emoji:🖲️\",
+  \"template\": \"backend\",
   \"authFlowId\": \"${AUTH_FLOW_ID}\",
   \"registrationFlowId\": \"${REG_FLOW_ID}\",
-  \"isRegistrationFlowEnabled\": false,
+  \"isRegistrationFlowEnabled\": true,
   \"allowedUserTypes\": [\"Person\"],
   \"user_attributes\": [\"given_name\",\"family_name\",\"email\",\"groups\", \"name\", \"ouId\"],
+  \"assertion\": {
+      \"validityPeriod\": 3600
+  },
+  \"loginConsent\": {
+      \"validityPeriod\": 0
+  },
   \"inboundAuthConfig\": [{
     \"type\": \"oauth2\",
     \"config\": {
         \"clientId\": \"cfp-tracker-client\",
+        \"clientSecret\": \"cfp-tracker-secret\",
         \"redirectUris\": [\"http://localhost:3000/api/auth/callback\"],
-        \"grantTypes\": [\"authorization_code\", \"refresh_token\"],
+        \"grantTypes\": [\"client_credentials\", \"authorization_code\"],
         \"responseTypes\": [\"code\"],
-        \"pkceRequired\": true,
-        \"tokenEndpointAuthMethod\": \"none\",
-        \"publicClient\": true,
+        \"pkceRequired\": false,
+        \"tokenEndpointAuthMethod\": \"client_secret_basic\",
+        \"publicClient\": false,
+        \"requirePushedAuthorizationRequests\": false,
         \"token\": {
             \"accessToken\": {
-                \"validityPeriod\": 3600,
-                \"userAttributes\": [\"given_name\",\"family_name\",\"email\",\"groups\", \"name\", \"ouId\"]
+                \"validityPeriod\": 3600
             },
             \"idToken\": {
                 \"validityPeriod\": 3600,
-                \"userAttributes\": [\"given_name\",\"family_name\",\"email\",\"groups\", \"name\", \"ouId\"]
+                \"responseType\": \"JWT\"
             }
         },
-        \"scopeClaims\": {
-            \"profile\": [\"name\",\"given_name\",\"family_name\",\"picture\"],
-            \"email\": [\"email\",\"email_verified\"],
-            \"phone\": [\"phone_number\",\"phone_number_verified\"],
-            \"group\": [\"groups\"],
-            \"ou\": [\"ouId\"]
+        \"scopes\": [\"openid\", \"profile\", \"email\"],
+        \"userInfo\": {
+            \"responseType\": \"JSON\"
         }
     }
   }]
