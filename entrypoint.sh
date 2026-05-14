@@ -48,6 +48,18 @@ export BASE_URL="https://31b257d9-f77d-4503-b823-3d45d06af736-dev.e1-us-east-azu
 export PUBLIC_URL="${BASE_URL}"
 export SERVER_PUBLIC_URL="${BASE_URL}"
 
+# MAGIC FIX: Rewrite the hardcoded absolute paths in the pre-compiled React SPA
+# so it fetches assets through the Choreo Gateway instead of the domain root.
+echo ">>> Rewriting React SPA absolute paths for Choreo Gateway..."
+GATE_DIR="$THUNDER_HOME/repository/resources/gate"
+if [ -d "$GATE_DIR" ]; then
+    find "$GATE_DIR" -type f -name "*.html" -exec sed -i 's|/gate/|/thunder-idp/thunder-id/v1.0/gate/|g' {} +
+    find "$GATE_DIR" -type f -name "*.js" -exec sed -i 's|"/gate/"|"/thunder-idp/thunder-id/v1.0/gate/"|g' {} +
+    echo ">>> Successfully rewrote SPA paths!"
+else
+    echo ">>> UI directory not found, skipping rewrite."
+fi
+
 # Export environment variable to skip security
 export SKIP_SECURITY=true
 
