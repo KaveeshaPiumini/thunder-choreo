@@ -3,8 +3,6 @@ server:
   port: 8090
   http_only: true
   public_url: "https://31b257d9-f77d-4503-b823-3d45d06af736-dev.e1-us-east-azure.choreoapis.dev/thunder-idp/thunder-id/v1.0"
-  base_url: "https://31b257d9-f77d-4503-b823-3d45d06af736-dev.e1-us-east-azure.choreoapis.dev/thunder-idp/thunder-id/v1.0"
-  url: "https://31b257d9-f77d-4503-b823-3d45d06af736-dev.e1-us-east-azure.choreoapis.dev/thunder-idp/thunder-id/v1.0"
 
 gate_client:
   hostname: "31b257d9-f77d-4503-b823-3d45d06af736-dev.e1-us-east-azure.choreoapis.dev"
