@@ -2,6 +2,24 @@
 SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]:-$0}")"
 source "${SCRIPT_DIR}/common.sh"
 
+# Fallback wrapper if thunder_api_call was renamed to api_call in newer Thunder versions (like v0.37.0)
+if ! command -v thunder_api_call &> /dev/null; then
+    thunder_api_call() {
+        if command -v api_call &> /dev/null; then
+            api_call "$@"
+        else
+            local method="$1"
+            local endpoint="$2"
+            local data="${3:-}"
+            local url="${THUNDER_API_BASE}${endpoint}"
+            if [ -z "$data" ]; then
+                curl -k -s -w "\n%{http_code}" -X "$method" "$url" -H "Content-Type: application/json" 2>/dev/null || echo "000"
+            else
+                curl -k -s -w "\n%{http_code}" -X "$method" "$url" -H "Content-Type: application/json" -d "$data" 2>/dev/null || echo "000"
+            fi
+        fi
+    }
+fi
 log_info "Creating CFP Tracker application..."
 
 # Fetch DEFAULT_OU_ID
