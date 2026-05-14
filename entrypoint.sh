@@ -43,5 +43,5 @@ else
     echo ">>> Database already bootstrapped, skipping setup.sh."
 fi
 
-echo ">>> Starting Thunder (without consent server)..."
-exec "$THUNDER_HOME/start.sh" --without-consent
+echo ">>> Starting Thunder (without consent server and security skipped)..."
+exec "$THUNDER_HOME/start.sh" --without-consent --skip-security
