@@ -40,8 +40,10 @@ window.__THUNDERID_RUNTIME_CONFIG__ = {
     ],
   },
   server: {
-    hostname: 'b029b391-50fb-49de-9264-d8924e1b1c39.e1-us-east-azure.choreoapps.dev',
+    // Not used when public_url is set
+    hostname: '0.0.0.0',
     port: 443,
     http_only: false,
+    public_url: 'https://b029b391-50fb-49de-9264-d8924e1b1c39.e1-us-east-azure.choreoapps.dev',
   },
 };
