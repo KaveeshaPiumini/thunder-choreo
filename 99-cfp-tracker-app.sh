@@ -109,7 +109,7 @@ BODY="${RESPONSE%???}"
 
 if [[ "$HTTP_CODE" == "201" ]] || [[ "$HTTP_CODE" == "200" ]]; then
     log_success "CFP Tracker application created successfully!"
-elif [[ "$HTTP_CODE" == "409" ]] || [[ "$BODY" =~ "APP-1022" ]]; then
+elif [[ "$HTTP_CODE" == "409" ]] || [[ "$HTTP_CODE" == "400" && "$BODY" =~ "APP-1020" ]] || [[ "$BODY" =~ "APP-1022" ]]; then
     log_warning "CFP Tracker application already exists, skipping."
 else
     log_error "Failed to create CFP Tracker application (HTTP $HTTP_CODE)"
