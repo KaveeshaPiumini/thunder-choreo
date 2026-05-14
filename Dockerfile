@@ -15,6 +15,10 @@ RUN ln -s /tmp /opt/thunderid/tmp
 COPY deployment.yaml /opt/thunderid/repository/conf/deployment.yaml
 COPY entrypoint.sh /opt/thunderid/entrypoint.sh
 
+# Mount custom UI config files
+COPY apps/gate/config.js /opt/thunderid/apps/gate/config.js
+COPY apps/console/config.js /opt/thunderid/apps/console/config.js
+
 RUN chmod +x /opt/thunderid/entrypoint.sh
 
 # Disable consent server
