@@ -43,6 +43,11 @@ else
     echo ">>> Database already bootstrapped, skipping setup.sh."
 fi
 
+# Force Thunder to use the Choreo external URL instead of localhost:8090
+export BASE_URL="https://31b257d9-f77d-4503-b823-3d45d06af736-dev.e1-us-east-azure.choreoapis.dev/thunder-idp/thunder-id/v1.0"
+export PUBLIC_URL="${BASE_URL}"
+export SERVER_PUBLIC_URL="${BASE_URL}"
+
 # Export environment variable to skip security
 export SKIP_SECURITY=true
 
