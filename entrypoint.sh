@@ -43,5 +43,8 @@ else
     echo ">>> Database already bootstrapped, skipping setup.sh."
 fi
 
+# Export environment variable to skip security
+export SKIP_SECURITY=true
+
 echo ">>> Starting Thunder (without consent server)..."
 exec "$THUNDER_HOME/start.sh" --without-consent
