@@ -1,7 +1,7 @@
 # Thunder Choreo Deployment Dockerfile
 # Uses the latest pre-built Thunder image with Choreo security requirements
 
-FROM ghcr.io/thunder-id/thunderid:latest
+FROM ghcr.io/asgardeo/thunderid:0.38.0
 
 USER root
 
