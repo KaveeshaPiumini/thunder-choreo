@@ -34,25 +34,6 @@ else
     exit 1
 fi
 
-# Fetch flow IDs
-RESPONSE=$(thunder_api_call GET "/flows?flowType=AUTHENTICATION&limit=10")
-HTTP_CODE="${RESPONSE: -3}"
-BODY="${RESPONSE%???}"
-if [[ "$HTTP_CODE" == "200" ]]; then
-    AUTH_FLOW_ID=$(echo "$BODY" | grep -o '{[^}]*"id":"[^"]*"[^}]*"handle":"default-basic-flow"[^}]*}' | grep -o '"id":"[^"]*"' | head -1 | cut -d'"' -f4)
-fi
-
-RESPONSE=$(thunder_api_call GET "/flows?flowType=REGISTRATION&limit=10")
-HTTP_CODE="${RESPONSE: -3}"
-BODY="${RESPONSE%???}"
-if [[ "$HTTP_CODE" == "200" ]]; then
-    REG_FLOW_ID=$(echo "$BODY" | grep -o '{[^}]*"id":"[^"]*"[^}]*"handle":"default-basic-flow"[^}]*}' | grep -o '"id":"[^"]*"' | head -1 | cut -d'"' -f4)
-fi
-
-# Fallback to the console ones if default doesn't exist
-if [[ -z "$AUTH_FLOW_ID" ]]; then
-    AUTH_FLOW_ID=$(thunder_api_call GET "/flows?flowType=AUTHENTICATION&limit=100" | grep -o '{[^}]*"id":"[^"]*"[^}]*"handle":"console-authentication-flow"[^}]*}' | grep -o '"id":"[^"]*"' | head -1 | cut -d'"' -f4)
-fi
 if [[ -z "$REG_FLOW_ID" ]]; then
     REG_FLOW_ID=$(thunder_api_call GET "/flows?flowType=REGISTRATION&limit=100" | grep -o '{[^}]*"id":"[^"]*"[^}]*"handle":"console-registration-flow"[^}]*}' | grep -o '"id":"[^"]*"' | head -1 | cut -d'"' -f4)
 fi
@@ -64,8 +45,6 @@ RESPONSE=$(thunder_api_call POST "/applications" "{
   \"url\": \"http://localhost:3000\",
   \"logoUrl\": \"emoji:🖲️\",
   \"template\": \"backend\",
-  \"authFlowId\": \"${AUTH_FLOW_ID}\",
-  \"registrationFlowId\": \"${REG_FLOW_ID}\",
   \"isRegistrationFlowEnabled\": true,
   \"allowedUserTypes\": [\"Person\"],
   \"user_attributes\": [\"given_name\",\"family_name\",\"email\",\"groups\", \"name\", \"ouId\"],
@@ -80,7 +59,7 @@ RESPONSE=$(thunder_api_call POST "/applications" "{
     \"config\": {
         \"clientId\": \"cfp-tracker-client\",
         \"clientSecret\": \"cfp-tracker-secret\",
-        \"redirectUris\": [\"http://localhost:3000/api/auth/callback\"],
+        \"redirectUris\": [\"http://localhost:3000/api/auth/callback\", \"https://oauth.pstmn.io/v1/callback\"],
         \"grantTypes\": [\"client_credentials\", \"authorization_code\"],
         \"responseTypes\": [\"code\"],
         \"pkceRequired\": false,
