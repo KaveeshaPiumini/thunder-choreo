@@ -14,6 +14,7 @@ cors:
   allowed_origins:
     - "https://b029b391-50fb-49de-9264-d8924e1b1c39.e1-us-east-azure.choreoapps.dev"
     - "http://localhost:3000"
+    - "https://cfp-tracker.vercel.app"
 
 
 database:
