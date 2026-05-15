@@ -1,5 +1,5 @@
 #!/bin/sh
-THUNDER_HOME="/opt/thunderid"
+THUNDER_HOME="/opt/thunder"
 
 # Force Thunder to use the Choreo external URL
 export BASE_URL="https://b029b391-50fb-49de-9264-d8924e1b1c39.e1-us-east-azure.choreoapps.dev"
