@@ -24,7 +24,7 @@ database:
       port: 22469
       name: "configdb"
       username: "avnadmin"
-      password: "DATABASE_PASSWORD_PLACEHOLDER"
+      password: "{{.AIVEN_DB_PASSWORD}}"
       sslmode: "require"
       max_open_conns: 20
       max_idle_conns: 10
@@ -37,7 +37,7 @@ database:
       port: 22469
       name: "runtimedb"
       username: "avnadmin"
-      password: "DATABASE_PASSWORD_PLACEHOLDER"
+      password: "{{.AIVEN_DB_PASSWORD}}"
       sslmode: "require"
       max_open_conns: 20
       max_idle_conns: 10
@@ -50,7 +50,7 @@ database:
       port: 22469
       name: "userdb"
       username: "avnadmin"
-      password: "DATABASE_PASSWORD_PLACEHOLDER"
+      password: "{{.AIVEN_DB_PASSWORD}}"
       sslmode: "require"
       max_open_conns: 20
       max_idle_conns: 10
