@@ -16,6 +16,13 @@ cors:
     - "http://localhost:3000"
     - "https://cfp-tracker.vercel.app"
 
+passkey:
+  allowed_origins:
+    - "https://localhost:8090"
+    - "https://localhost:3000"
+    - "https://cfp-tracker.vercel.app"  
+    - "https://b029b391-50fb-49de-9264-d8924e1b1c39.e1-us-east-azure.choreoapps.dev"
+
 
 database:
   config:
