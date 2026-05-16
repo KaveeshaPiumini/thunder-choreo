@@ -80,3 +80,13 @@ jwt:
 
 consent:
   enabled: false
+
+email:
+  smtp:
+    host: "smtp.gmail.com"
+    port: 587
+    username: "cfptrackerxthunderid@gmail.com"
+    password: "vncs wvqs tvnq mtqe"
+    from_address: "cfptrackerxthunderid@gmail.com"
+    enable_start_tls: true
+    enable_authentication: true
